@@ -1,0 +1,27 @@
+// banco/conexao.js
+const mongoose = require("mongoose");
+
+// Classe POO 
+class Database {
+  constructor(url) {
+    this.url = url;
+  }
+
+  async conectar() {
+    try {
+      await mongoose.connect(this.url, {
+      });
+      console.log(" MongoDB conectado com sucesso!");
+    } catch (err) {
+      console.error(" Erro ao conectar no MongoDB:", err);
+    }
+  }
+}
+
+// Banco de Dados - Endereço MongoDB
+const db = new Database(
+  "mongodb://localhost:27017/a3"
+);
+
+// Exporta a função db
+module.exports = () => db.conectar();
